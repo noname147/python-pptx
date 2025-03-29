@@ -113,7 +113,10 @@ class _BaseShapes(ParentedElementProxy):
         sp = placeholder.element
         ph_type, orient, sz, idx = (sp.ph_type, sp.ph_orient, sp.ph_sz, sp.ph_idx)
         id_ = self._next_shape_id
-        name = self._next_ph_name(ph_type, id_, orient)
+        
+        name = placeholder.name
+        if not name:
+            name = self._next_ph_name(ph_type, id_, orient)
         self._spTree.add_placeholder(id_, name, ph_type, orient, sz, idx)
 
     def ph_basename(self, ph_type: PP_PLACEHOLDER) -> str:
